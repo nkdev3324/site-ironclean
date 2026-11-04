@@ -13,10 +13,18 @@ Double-cliquez sur `index.html` : il s'ouvre dans votre navigateur.
 | `css/style.css` | Apparence : couleurs, polices, mise en page, version mobile |
 | `js/script.js` | Interactions : menu mobile, comparateur avant/après, animations |
 | `logo.svg` | Logo officiel |
-| `images/` | Images provisoires avant/après + icône de l'onglet |
+| `merci.html` | Page de confirmation affichée après l’envoi du formulaire |
+| `images/` | Photos avant/après (`avant-1.jpg`, `apres-1.jpg`…) + icône de l’onglet |
+
+## Formulaire de pré-rendez-vous (Netlify Forms)
+Le formulaire `pre-rendez-vous` (section Contact) est détecté automatiquement par Netlify au déploiement.
+Les demandes reçues apparaissent dans l’interface Netlify, onglet **Forms**
+(vous pouvez y activer une notification par e-mail). Après l’envoi, le visiteur arrive sur `merci.html`.
+Le formulaire ne fonctionne qu’une fois le site en ligne sur Netlify (pas en ouvrant le fichier en local).
 
 ## À personnaliser
-- **Tarifs et services** : section `SERVICES ET TARIFS` dans `index.html` (textes provisoires).
-- **Photos avant/après** : remplacez `images/avant-1.svg`, `apres-1.svg`, etc. par de vraies photos
-  (par ex. `avant-1.jpg`) et mettez à jour les `src` dans `index.html`.
+- **Tarifs et services** : section `SERVICES ET TARIFS` dans `index.html`.
+- **Photos avant/après** : remplacez les fichiers `images/avant-1.jpg`, `apres-1.jpg`, etc.
+  (format portrait 3:4 conseillé, environ 900 × 1200 px).
+- **Vidéos TikTok** : section `NOS RÉALISATIONS` dans `index.html` (identifiant de la vidéo dans `cite` et `data-video-id`).
 - **Couleurs** : variables en haut de `css/style.css`.
