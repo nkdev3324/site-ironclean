@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     IRON CLEAN — Site vitrine (une seule page)
+     Ce fichier contient la STRUCTURE et le CONTENU du site.
+     Le style (couleurs, polices, mise en page) est dans css/style.css
+     Les interactions (menu mobile, slider avant/après…) sont dans js/script.js
+     ============================================================ -->
+<html lang="fr">
+<head>
+  <!-- Encodage des caractères : permet d'afficher les accents correctement -->
+  <meta charset="UTF-8">
+  <!-- Indispensable pour que le site s'adapte à la largeur des téléphones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Titre affiché dans l'onglet du navigateur et dans Google -->
+  <title>IRON CLEAN — Lavage automobile & detailing haut de gamme à Toulouse</title>
+  <!-- Description affichée sous le titre dans les résultats Google -->
+  <meta name="description" content="IRON CLEAN, spécialiste du lavage automobile et du detailing haut de gamme à Toulouse. Nettoyage en profondeur, produits de qualité, savoir-faire professionnel.">
+  <!-- Couleur de la barre du navigateur sur mobile -->
+  <meta name="theme-color" content="#000000">
+
+  <!-- Petite icône affichée dans l'onglet du navigateur -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Chargement des polices Google Fonts : Michroma (titres) et Montserrat Medium (500) + Bold (700) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Notre feuille de style -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Petit script immédiat : indique au CSS que le JavaScript est actif
+       (évite que les blocs animés "clignotent" au chargement) -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+
+<body>
+
+  <!-- ========================================================
+       EN-TÊTE : logo + menu de navigation
+       ======================================================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+
+      <!-- Logo : un clic ramène en haut de la page -->
+      <a href="#accueil" class="header__logo" aria-label="IRON CLEAN — retour à l'accueil">
+        <img src="logo.svg" alt="IRON CLEAN" width="160" height="40">
+      </a>
+
+      <!-- Bouton "burger" (3 traits) visible uniquement sur mobile -->
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Menu : chaque lien pointe vers l'identifiant (id) d'une section -->
+      <nav class="nav" id="menu" aria-label="Menu principal">
+        <ul class="nav__list">
+          <li><a href="#a-propos" class="nav__link">À propos</a></li>
+          <li><a href="#valeurs" class="nav__link">Valeurs</a></li>
+          <li><a href="#services" class="nav__link">Services</a></li>
+          <li><a href="#avant-apres" class="nav__link">Avant / Après</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn--small nav__cta">Rendez-vous</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================================================
+         ACCUEIL (la grande bannière en haut de page)
+         ======================================================== -->
+    <section class="hero" id="accueil">
+      <div class="container hero__content">
+        <p class="hero__surtitre">Lavage automobile &amp; detailing · Toulouse</p>
+        <!-- h1 = le titre le plus important de la page (un seul par page) -->
+        <h1 class="hero__titre">
+          L'excellence<br>
+          <span class="vert">jusque dans le détail</span>
+        </h1>
+        <p class="hero__texte">
+          Un nettoyage en profondeur, des produits de qualité et un savoir-faire professionnel
+          pour redonner à votre véhicule tout son éclat.
+        </p>
+        <div class="hero__boutons">
+          <a href="#contact" class="btn">Prendre rendez-vous</a>
+          <a href="#services" class="btn btn--contour">Voir les services</a>
+        </div>
+      </div>
+
+      <!-- Petite flèche animée qui invite à faire défiler la page -->
+      <a href="#a-propos" class="hero__scroll" aria-label="Descendre vers la section À propos">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ========================================================
+         À PROPOS
+         ======================================================== -->
+    <section class="section" id="a-propos">
+      <div class="container apropos">
+        <div class="apropos__texte reveal">
+          <p class="surtitre">À propos</p>
+          <h2 class="titre-section">Le soin automobile, version premium</h2>
+          <p>
+            <strong>IRON CLEAN</strong> est spécialisée dans le lavage automobile et le detailing haut de gamme.
+          </p>
+          <p>
+            Notre mission : offrir à chaque véhicule un nettoyage en profondeur, avec des produits
+            de qualité et un savoir-faire professionnel.
+          </p>
+          <a href="#services" class="lien-fleche">Découvrir nos prestations</a>
+        </div>
+
+        <!-- Chiffres clés (textes provisoires, à adapter) -->
+        <ul class="apropos__chiffres reveal">
+          <li>
+            <span class="chiffre">100%</span>
+            <span class="legende">Fait à la main</span>
+          </li>
+          <li>
+            <span class="chiffre">Pro</span>
+            <span class="legende">Produits professionnels</span>
+          </li>
+          <li>
+            <span class="chiffre">31</span>
+            <span class="legende">Basés à Toulouse</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         NOS VALEURS
+         ======================================================== -->
+    <section class="section section--sombre" id="valeurs">
+      <div class="container">
+        <div class="entete-section reveal">
+          <p class="surtitre">Nos valeurs</p>
+          <h2 class="titre-section">Ce qui nous définit</h2>
+        </div>
+
+        <div class="grille grille--3">
+          <!-- Carte valeur n°1 -->
+          <article class="carte reveal">
+            <!-- Icône dessinée en SVG (un format d'image vectoriel, net à toutes les tailles) -->
+            <svg class="carte__icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7L12 2z"/>
+            </svg>
+            <h3 class="carte__titre">Premium</h3>
+            <p>Des produits haut de gamme et des finitions soignées pour un résultat digne des plus belles carrosseries.</p>
+          </article>
+
+          <!-- Carte valeur n°2 -->
+          <article class="carte reveal">
+            <svg class="carte__icone" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 1v5M12 18v5M1 12h5M18 12h5"/>
+            </svg>
+            <h3 class="carte__titre">Précision</h3>
+            <p>Chaque recoin compte. Nous travaillons avec méthode, du moindre joint jusqu'aux jantes.</p>
+          </article>
+
+          <!-- Carte valeur n°3 -->
+          <article class="carte reveal">
+            <svg class="carte__icone" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2l8 3v6c0 5-3.5 9.3-8 11-4.5-1.7-8-6-8-11V5l8-3z"/>
+              <path d="M8.5 12l2.5 2.5 4.5-5"/>
+            </svg>
+            <h3 class="carte__titre">Confiance</h3>
+            <p>Transparence sur les prestations et les tarifs, respect de votre véhicule : vous le confiez en toute sérénité.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SERVICES ET TARIFS (textes et prix PROVISOIRES)
+         ======================================================== -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="entete-section reveal">
+          <p class="surtitre">Services &amp; tarifs</p>
+          <h2 class="titre-section">Nos formules</h2>
+          <p class="note">Tarifs indicatifs, à partir de — selon la taille et l'état du véhicule.</p>
+        </div>
+
+        <div class="grille grille--3">
+          <!-- Formule 1 -->
+          <article class="tarif reveal">
+            <h3 class="tarif__nom">Intérieur</h3>
+            <p class="tarif__prix"><span>à partir de</span> 49 <span class="devise">€</span></p>
+            <ul class="tarif__liste">
+              <li>Aspiration complète</li>
+              <li>Nettoyage des plastiques</li>
+              <li>Vitres intérieures</li>
+              <li>Tapis et bas de portes</li>
+            </ul>
+            <a href="#contact" class="btn btn--contour btn--plein-largeur">Réserver</a>
+          </article>
+
+          <!-- Formule 2 (mise en avant avec la classe "tarif--vedette") -->
+          <article class="tarif tarif--vedette reveal">
+            <span class="tarif__badge">Le plus demandé</span>
+            <h3 class="tarif__nom">Complet</h3>
+            <p class="tarif__prix"><span>à partir de</span> 89 <span class="devise">€</span></p>
+            <ul class="tarif__liste">
+              <li>Formule Intérieur incluse</li>
+              <li>Lavage extérieur à la main</li>
+              <li>Jantes et pneus</li>
+              <li>Shampoing des sièges</li>
+            </ul>
+            <a href="#contact" class="btn btn--plein-largeur">Réserver</a>
+          </article>
+
+          <!-- Formule 3 -->
+          <article class="tarif reveal">
+            <h3 class="tarif__nom">Detailing</h3>
+            <p class="tarif__prix"><span>à partir de</span> 149 <span class="devise">€</span></p>
+            <ul class="tarif__liste">
+              <li>Formule Complet incluse</li>
+              <li>Décontamination carrosserie</li>
+              <li>Polissage et lustrage</li>
+              <li>Protection céramique</li>
+            </ul>
+            <a href="#contact" class="btn btn--contour btn--plein-largeur">Réserver</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         AVANT / APRÈS
+         Chaque bloc "comparateur" superpose deux images.
+         Le curseur (input type="range") permet de faire glisser
+         la séparation entre l'image "avant" et l'image "après".
+         ➜ Pour mettre vos vraies photos : remplacez les fichiers
+           dans le dossier images/ (ou changez les "src" ci-dessous).
+         ======================================================== -->
+    <section class="section section--sombre" id="avant-apres">
+      <div class="container">
+        <div class="entete-section reveal">
+          <p class="surtitre">Avant / Après</p>
+          <h2 class="titre-section">Le résultat parle de lui-même</h2>
+          <p class="note">Faites glisser le curseur pour comparer.</p>
+        </div>
+
+        <div class="grille grille--2">
+          <!-- Comparateur n°1 -->
+          <figure class="comparateur reveal">
+            <div class="comparateur__cadre">
+              <img src="images/avant-1.svg" alt="Véhicule avant le lavage (photo provisoire)" class="comparateur__img">
+              <!-- L'image "après" est posée par-dessus et rognée selon la position du curseur -->
+              <img src="images/apres-1.svg" alt="Véhicule après le lavage (photo provisoire)" class="comparateur__img comparateur__apres">
+              <span class="comparateur__etiquette comparateur__etiquette--avant">Avant</span>
+              <span class="comparateur__etiquette comparateur__etiquette--apres">Après</span>
+              <div class="comparateur__ligne" aria-hidden="true"></div>
+              <input type="range" min="0" max="100" value="50" class="comparateur__curseur" aria-label="Comparer avant et après">
+            </div>
+            <figcaption>Lavage extérieur complet</figcaption>
+          </figure>
+
+          <!-- Comparateur n°2 -->
+          <figure class="comparateur reveal">
+            <div class="comparateur__cadre">
+              <img src="images/avant-2.svg" alt="Carrosserie avant le detailing (photo provisoire)" class="comparateur__img">
+              <img src="images/apres-2.svg" alt="Carrosserie après le detailing (photo provisoire)" class="comparateur__img comparateur__apres">
+              <span class="comparateur__etiquette comparateur__etiquette--avant">Avant</span>
+              <span class="comparateur__etiquette comparateur__etiquette--apres">Après</span>
+              <div class="comparateur__ligne" aria-hidden="true"></div>
+              <input type="range" min="0" max="100" value="50" class="comparateur__curseur" aria-label="Comparer avant et après">
+            </div>
+            <figcaption>Polissage et lustrage carrosserie</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT
+         ======================================================== -->
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div class="contact__intro reveal">
+          <p class="surtitre">Contact</p>
+          <h2 class="titre-section">Prenons rendez-vous</h2>
+          <p>
+            Une question, un devis, une réservation ? Contactez directement
+            <strong>Marco Chouchane</strong> par téléphone ou sur les réseaux sociaux.
+          </p>
+          <!-- "tel:" ouvre directement l'appel sur un téléphone -->
+          <div class="contact__boutons">
+            <a href="tel:+33649723311" class="btn">Appeler le 06 49 72 33 11</a>
+            <!-- "sms:" ouvre l'application de messages -->
+            <a href="sms:+33649723311" class="btn btn--contour">Envoyer un SMS</a>
+          </div>
+        </div>
+
+        <ul class="contact__liste reveal">
+          <li class="contact__item">
+            <span class="contact__label">Responsable</span>
+            <span class="contact__valeur">Marco Chouchane</span>
+          </li>
+          <li class="contact__item">
+            <span class="contact__label">Téléphone</span>
+            <a href="tel:+33649723311" class="contact__valeur">06 49 72 33 11</a>
+          </li>
+          <li class="contact__item">
+            <span class="contact__label">Zone</span>
+            <span class="contact__valeur">Toulouse</span>
+          </li>
+          <li class="contact__item">
+            <span class="contact__label">Réseaux sociaux</span>
+            <!-- target="_blank" ouvre le lien dans un nouvel onglet ;
+                 rel="noopener" est une bonne pratique de sécurité qui l'accompagne -->
+            <div class="reseaux">
+              <a href="https://www.snapchat.com/add/lavage_auto31" target="_blank" rel="noopener" class="reseau">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c3 0 5.2 2.3 5.2 5.4v2.3c.5.2 1.1-.1 1.6-.1.6 0 1 .4 1 .8 0 .8-1.4 1-2.1 1.4-.3.2-.3.5-.1.9.9 1.8 2.3 3.1 4 3.5-.2.7-1.6 1-2.5 1.2-.2.4-.2 1-.5 1.2-.6.2-1.6-.2-2.6 0-1.3.3-2.1 1.9-4 1.9s-2.7-1.6-4-1.9c-1-.2-2 .2-2.6 0-.3-.2-.3-.8-.5-1.2-.9-.2-2.3-.5-2.5-1.2 1.7-.4 3.1-1.7 4-3.5.2-.4.2-.7-.1-.9-.7-.4-2.1-.6-2.1-1.4 0-.4.4-.8 1-.8.5 0 1.1.3 1.6.1V7.9C6.8 4.8 9 2.5 12 2.5z"/></svg>
+                <span><small>Snapchat</small>lavage_auto31</span>
+              </a>
+              <a href="https://www.tiktok.com/@iron.clean7" target="_blank" rel="noopener" class="reseau">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                <span><small>TikTok</small>iron.clean7</span>
+              </a>
+              <a href="https://www.instagram.com/iron.clean31/" target="_blank" rel="noopener" class="reseau">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2"/></svg>
+                <span><small>Instagram</small>iron.clean31</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       PIED DE PAGE
+       ======================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="logo.svg" alt="IRON CLEAN" class="footer__logo" width="140" height="35">
+      <p class="footer__valeurs">Premium · Précision · Confiance</p>
+      <!-- L'année est remplie automatiquement par le JavaScript (id="annee") -->
+      <p class="footer__copyright">© <span id="annee">2026</span> IRON CLEAN — Toulouse. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Le script est chargé à la fin pour que toute la page soit déjà affichée -->
+  <script src="js/script.js"></script>
+</body>
+</html>

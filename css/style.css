@@ -1,0 +1,1090 @@
+/* ============================================================
+   IRON CLEAN — Feuille de style
+   Ce fichier décide de l'APPARENCE du site : couleurs, polices,
+   espacements, mise en page, animations et version mobile.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. VARIABLES (la charte graphique)
+   On définit les couleurs et polices une seule fois ici.
+   Pour changer une couleur partout sur le site, il suffit
+   de la modifier à cet endroit.
+   ------------------------------------------------------------ */
+:root {
+  /* Couleurs officielles */
+  --vert: #2EE900;          /* vert signature : accents et boutons */
+  --noir: #000000;          /* anthracite : fond principal */
+  --blanc: #FFFFFF;         /* texte */
+
+  /* Nuances dérivées (pour créer de la profondeur sans sortir de la charte) */
+  --gris-fonce: #0d0d0d;    /* fond des sections alternées */
+  --gris-carte: #141414;    /* fond des cartes */
+  --bordure: rgba(255, 255, 255, 0.1);  /* fines bordures blanches transparentes */
+  --texte-doux: rgba(255, 255, 255, 0.7); /* texte secondaire, un peu moins blanc */
+
+  /* Polices */
+  --police-titre: "Michroma", sans-serif;
+  --police-texte: "Montserrat", sans-serif;
+
+  /* Divers */
+  --largeur-max: 1200px;    /* largeur maximale du contenu */
+  --hauteur-header: 76px;   /* hauteur de l'en-tête */
+  --transition: 0.3s ease;  /* vitesse des animations */
+}
+
+
+/* ------------------------------------------------------------
+   2. RÉINITIALISATION ET BASES
+   Les navigateurs ajoutent des marges par défaut : on les retire
+   pour partir d'une base propre.
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* la largeur inclut les marges intérieures et bordures */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;                     /* défilement fluide quand on clique sur le menu */
+  scroll-padding-top: var(--hauteur-header);   /* évite que l'en-tête fixe cache le haut des sections */
+}
+
+body {
+  background-color: var(--noir);
+  color: var(--blanc);
+  font-family: var(--police-texte);
+  font-weight: 500;          /* Montserrat Medium pour le texte courant */
+  font-size: 1rem;           /* 1rem = 16 pixels */
+  line-height: 1.7;          /* interligne aéré, plus lisible */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;        /* empêche tout défilement horizontal sur mobile */
+}
+
+/* Quand le menu mobile est ouvert, on bloque le défilement de la page derrière */
+body.menu-ouvert {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;   /* une image ne dépasse jamais de son conteneur */
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+strong {
+  font-weight: 700;  /* Montserrat Bold */
+}
+
+/* Tous les titres : police Michroma en MAJUSCULES (charte) */
+h1, h2, h3 {
+  font-family: var(--police-titre);
+  font-weight: 400;              /* Michroma n'existe qu'en une seule graisse */
+  text-transform: uppercase;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+}
+
+/* Contour visible quand on navigue au clavier (accessibilité) */
+:focus-visible {
+  outline: 2px solid var(--vert);
+  outline-offset: 3px;
+}
+
+
+/* ------------------------------------------------------------
+   3. CLASSES UTILITAIRES (réutilisées dans tout le site)
+   ------------------------------------------------------------ */
+
+/* Conteneur centré qui limite la largeur du contenu */
+.container {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Texte en vert */
+.vert {
+  color: var(--vert);
+}
+
+/* Espacement vertical commun à toutes les sections */
+.section {
+  padding: 110px 0;
+}
+
+/* Variante avec un fond légèrement plus clair pour alterner */
+.section--sombre {
+  background-color: var(--gris-fonce);
+  border-top: 1px solid var(--bordure);
+  border-bottom: 1px solid var(--bordure);
+}
+
+/* Petit texte vert au-dessus des titres de section */
+.surtitre {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--vert);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Petit trait vert devant le surtitre */
+.surtitre::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--vert);
+}
+
+.titre-section {
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem); /* taille qui s'adapte à l'écran, entre un min et un max */
+  margin-bottom: 24px;
+}
+
+/* En-tête centré des sections (Valeurs, Services, Avant/Après) */
+.entete-section {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 60px;
+}
+
+.entete-section .surtitre {
+  justify-content: center;
+}
+
+.note {
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+}
+
+/* Grilles responsives : les colonnes passent à la ligne si l'écran est trop étroit */
+.grille {
+  display: grid;
+  gap: 28px;
+}
+
+.grille--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grille--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* ------------------------------------------------------------
+   4. BOUTONS
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background-color: var(--vert);
+  color: var(--noir);
+  font-family: var(--police-texte);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 2px solid var(--vert);
+  border-radius: 2px;            /* angles presque droits : rendu précis et sobre */
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              box-shadow var(--transition), transform var(--transition);
+}
+
+/* Effet au survol de la souris : léger halo vert */
+.btn:hover {
+  box-shadow: 0 0 28px rgba(46, 233, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Bouton "contour" : transparent avec bordure verte */
+.btn--contour {
+  background-color: transparent;
+  color: var(--vert);
+}
+
+.btn--contour:hover {
+  background-color: var(--vert);
+  color: var(--noir);
+}
+
+/* Petit bouton (dans le menu) */
+.btn--small {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+}
+
+/* Bouton qui prend toute la largeur disponible */
+.btn--plein-largeur {
+  width: 100%;
+}
+
+/* Lien texte avec une flèche */
+.lien-fleche {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--vert);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lien-fleche::after {
+  content: " →";
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+.lien-fleche:hover::after {
+  transform: translateX(6px);
+}
+
+
+/* ------------------------------------------------------------
+   5. EN-TÊTE (logo + menu)
+   ------------------------------------------------------------ */
+.header {
+  position: fixed;        /* reste toujours visible en haut de l'écran */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;           /* passe au-dessus du reste du contenu */
+  height: var(--hauteur-header);
+  transition: background-color var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+
+/* Classe ajoutée par le JavaScript quand on a défilé : fond noir semi-opaque */
+.header.header--scrolle {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-bottom-color: var(--bordure);
+}
+
+/* Effet "verre dépoli" uniquement sur grand écran
+   (sur mobile, il empêcherait le menu plein écran de s'afficher correctement) */
+@media (min-width: 981px) {
+  .header.header--scrolle {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+.header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo img {
+  width: 150px;
+  height: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav__list {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  transition: color var(--transition);
+}
+
+/* Soulignement vert qui apparaît au survol ou sur la section active */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--vert);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.nav__link:hover,
+.nav__link.actif {
+  color: var(--vert);
+}
+
+.nav__link:hover::after,
+.nav__link.actif::after {
+  transform: scaleX(1);
+}
+
+/* Bouton burger : caché sur ordinateur, affiché sur mobile (voir partie 12) */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.burger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin-left: auto;
+  background: var(--blanc);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Quand le menu est ouvert, les 3 traits se transforment en croix (X) */
+.burger.ouvert span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger.ouvert span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.ouvert span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* ------------------------------------------------------------
+   6. ACCUEIL (hero)
+   ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  min-height: 100vh;      /* occupe toute la hauteur de l'écran */
+  min-height: 100svh;     /* version plus précise pour les mobiles récents */
+  display: flex;
+  align-items: center;
+  padding: calc(var(--hauteur-header) + 40px) 0 100px;
+  overflow: hidden;
+  /* Fond : halo vert discret + quadrillage fin, pour un rendu technique et haut de gamme.
+     ➜ Vous pourrez remplacer cela par une photo : background-image: url("../images/hero.jpg"); */
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(46, 233, 0, 0.14), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 90%, rgba(46, 233, 0, 0.06), transparent 70%),
+    var(--noir);
+}
+
+/* Quadrillage fin en arrière-plan (purement décoratif) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--bordure) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bordure) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  /* Le quadrillage s'estompe vers les bords */
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;  /* passe au-dessus du quadrillage */
+}
+
+.hero__surtitre {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  margin-bottom: 24px;
+}
+
+.hero__titre {
+  font-size: clamp(2rem, 6.5vw, 4.6rem);
+  margin-bottom: 28px;
+  max-width: 900px;
+}
+
+.hero__texte {
+  max-width: 560px;
+  font-size: 1.1rem;
+  color: var(--texte-doux);
+  margin-bottom: 44px;
+}
+
+.hero__boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Indicateur de défilement : une souris stylisée avec un point qui descend */
+.hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--texte-doux);
+  border-radius: 14px;
+}
+
+.hero__scroll span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--vert);
+  animation: defilement 1.8s infinite;
+}
+
+@keyframes defilement {
+  0%   { transform: translateY(0);    opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+
+/* ------------------------------------------------------------
+   7. À PROPOS
+   ------------------------------------------------------------ */
+.apropos {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;  /* 2 colonnes : texte plus large que les chiffres */
+  gap: 80px;
+  align-items: center;
+}
+
+.apropos__texte p {
+  color: var(--texte-doux);
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.apropos__texte strong {
+  color: var(--blanc);
+}
+
+.apropos__chiffres {
+  display: grid;
+  gap: 1px;
+  background: var(--bordure);    /* astuce : le fond visible entre les cases crée des séparateurs fins */
+  border: 1px solid var(--bordure);
+}
+
+.apropos__chiffres li {
+  background: var(--noir);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.chiffre {
+  font-family: var(--police-titre);
+  font-size: 2rem;
+  color: var(--vert);
+  min-width: 110px;
+}
+
+.legende {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------
+   8. CARTES VALEURS
+   ------------------------------------------------------------ */
+.carte {
+  background: var(--gris-carte);
+  border: 1px solid var(--bordure);
+  padding: 44px 36px;
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+/* Fine ligne verte en haut de la carte qui s'étend au survol */
+.carte::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 48px;
+  height: 2px;
+  background: var(--vert);
+  transition: width var(--transition);
+}
+
+.carte:hover {
+  border-color: rgba(46, 233, 0, 0.4);
+  transform: translateY(-6px);
+}
+
+.carte:hover::before {
+  width: calc(100% + 2px);
+}
+
+.carte__icone {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 28px;
+  fill: none;
+  stroke: var(--vert);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.carte__titre {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.carte p {
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+}
+
+
+/* ------------------------------------------------------------
+   9. SERVICES ET TARIFS
+   ------------------------------------------------------------ */
+.tarif {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--gris-carte);
+  border: 1px solid var(--bordure);
+  padding: 44px 36px 36px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.tarif:hover {
+  border-color: rgba(46, 233, 0, 0.4);
+  transform: translateY(-6px);
+}
+
+/* Formule mise en avant : bordure verte */
+.tarif--vedette {
+  border-color: var(--vert);
+  box-shadow: 0 0 60px rgba(46, 233, 0, 0.12);
+}
+
+.tarif__badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--vert);
+  color: var(--noir);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
+
+.tarif__nom {
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.tarif__prix {
+  font-family: var(--police-titre);
+  font-size: 2.4rem;
+  color: var(--vert);
+  line-height: 1.1;
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.tarif__prix span {
+  display: block;
+  font-family: var(--police-texte);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  margin-bottom: 6px;
+}
+
+.tarif__prix .devise {
+  /* La police Michroma ne contient pas le symbole €, on utilise donc Montserrat */
+  display: inline;
+  font-family: var(--police-texte);
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--vert);
+  margin: 0;
+}
+
+.tarif__liste {
+  flex-grow: 1;         /* pousse le bouton en bas pour aligner toutes les cartes */
+  margin-bottom: 32px;
+}
+
+.tarif__liste li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+}
+
+/* Petite coche verte devant chaque ligne */
+.tarif__liste li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 14px;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid var(--vert);
+  border-bottom: 2px solid var(--vert);
+  transform: rotate(-45deg);
+}
+
+
+/* ------------------------------------------------------------
+   10. AVANT / APRÈS (comparateur d'images)
+   ------------------------------------------------------------ */
+.comparateur figcaption {
+  margin-top: 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.comparateur__cadre {
+  position: relative;
+  aspect-ratio: 4 / 3;      /* proportions fixes du cadre */
+  overflow: hidden;
+  border: 1px solid var(--bordure);
+  /* Variable modifiée par le JavaScript selon la position du curseur */
+  --position: 50%;
+}
+
+.comparateur__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* l'image remplit le cadre sans être déformée */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* L'image "après" n'est visible qu'à droite de la ligne de séparation */
+.comparateur__apres {
+  clip-path: inset(0 0 0 var(--position));
+}
+
+/* Ligne verticale verte + poignée ronde */
+.comparateur__ligne {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--position);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--vert);
+  pointer-events: none;
+}
+
+.comparateur__ligne::after {
+  content: "‹ ›";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--vert);
+  color: var(--noir);
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Le vrai curseur est invisible mais couvre tout le cadre : on peut glisser n'importe où */
+.comparateur__curseur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  margin: 0;
+}
+
+/* Quand le curseur a le focus clavier, on entoure la poignée */
+.comparateur__cadre:has(.comparateur__curseur:focus-visible) .comparateur__ligne::after {
+  outline: 2px solid var(--blanc);
+  outline-offset: 3px;
+}
+
+.comparateur__etiquette {
+  position: absolute;
+  top: 16px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.75);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.comparateur__etiquette--avant {
+  left: 16px;
+}
+
+.comparateur__etiquette--apres {
+  right: 16px;
+  color: var(--vert);
+}
+
+
+/* ------------------------------------------------------------
+   11. CONTACT
+   ------------------------------------------------------------ */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact__intro p {
+  color: var(--texte-doux);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+}
+
+.contact__intro strong {
+  color: var(--blanc);
+}
+
+.contact__boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.contact__liste {
+  border-top: 1px solid var(--bordure);
+}
+
+.contact__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.contact__label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vert);
+}
+
+.contact__valeur {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+a.contact__valeur:hover {
+  color: var(--vert);
+}
+
+.reseaux {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.reseau {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--bordure);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.reseau:hover {
+  border-color: var(--vert);
+  background-color: rgba(46, 233, 0, 0.06);
+}
+
+.reseau svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  fill: var(--vert);
+  color: var(--vert);
+}
+
+.reseau span {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.reseau small {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+}
+
+
+/* ------------------------------------------------------------
+   12. PIED DE PAGE
+   ------------------------------------------------------------ */
+.footer {
+  padding: 60px 0 40px;
+  border-top: 1px solid var(--bordure);
+  text-align: center;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer__logo {
+  width: 140px;
+  height: auto;
+}
+
+.footer__valeurs {
+  font-family: var(--police-titre);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--vert);
+}
+
+.footer__copyright {
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+
+
+/* ------------------------------------------------------------
+   13. ANIMATION D'APPARITION AU DÉFILEMENT
+   Les éléments avec la classe "reveal" sont d'abord invisibles,
+   puis le JavaScript leur ajoute la classe "visible" quand ils
+   arrivent à l'écran.
+   La classe "js" sur <html> garantit que, si le JavaScript ne
+   fonctionne pas, tout reste visible.
+   ------------------------------------------------------------ */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect des personnes qui ont désactivé les animations dans leur système */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   14. VERSION TABLETTE ET MOBILE (responsive)
+   Les règles "@media (max-width: …)" ne s'appliquent que
+   lorsque l'écran est plus petit que la largeur indiquée.
+   ------------------------------------------------------------ */
+
+/* Tablettes et petits ordinateurs (moins de 980 px) */
+@media (max-width: 980px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  /* Le menu devient un panneau plein écran qui s'ouvre avec le burger */
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    background: var(--noir);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
+  }
+
+  /* Classe ajoutée par le JavaScript pour afficher le menu */
+  .nav.ouvert {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav__link {
+    font-family: var(--police-titre);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+
+  .nav__cta {
+    padding: 16px 32px;
+    font-size: 0.85rem;
+  }
+
+  /* Les grilles à 3 colonnes passent à 1 colonne */
+  .grille--3 {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* Pour les tarifs, on laisse plus d'espace pour le badge */
+  #services .grille--3 {
+    gap: 40px;
+  }
+
+  .apropos,
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+/* Téléphones (moins de 640 px) */
+@media (max-width: 640px) {
+  :root {
+    --hauteur-header: 64px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .header__logo img {
+    width: 120px;
+  }
+
+  .entete-section {
+    margin-bottom: 44px;
+  }
+
+  .grille--2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Les boutons de l'accueil et du contact prennent toute la largeur */
+  .hero__boutons .btn,
+  .contact__boutons .btn {
+    width: 100%;
+  }
+
+  .hero__texte {
+    font-size: 1rem;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  .apropos__chiffres li {
+    padding: 22px 20px;
+  }
+
+  .chiffre {
+    font-size: 1.6rem;
+    min-width: 80px;
+  }
+
+  .carte,
+  .tarif {
+    padding: 36px 24px 28px;
+  }
+}
