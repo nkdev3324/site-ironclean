@@ -26,5 +26,5 @@ Le formulaire ne fonctionne qu’une fois le site en ligne sur Netlify (pas en o
 - **Tarifs et services** : section `SERVICES ET TARIFS` dans `index.html`.
 - **Photos avant/après** : remplacez les fichiers `images/avant-1.jpg`, `apres-1.jpg`, etc.
   (format portrait 3:4 conseillé, environ 900 × 1200 px).
-- **Vidéos TikTok** : section `NOS RÉALISATIONS` dans `index.html` (identifiant de la vidéo dans `cite` et `data-video-id`).
+- **Vidéos TikTok** : section `NOS RÉALISATIONS` dans `index.html` (identifiant de la vidéo dans le `src` de l'iframe `https://www.tiktok.com/player/v1/ID` et dans le lien « Voir sur TikTok »).
 - **Couleurs** : variables en haut de `css/style.css`.
