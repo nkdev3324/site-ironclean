@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Image PROVISOIRE : à remplacer par une vraie photo (même nom de fichier, ou modifiez index.html) -->
+  <defs><radialGradient id="g" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#1c2a18"/><stop offset="1" stop-color="#050505"/></radialGradient></defs><rect width="800" height="600" fill="url(#g)"/><rect y="420" width="800" height="180" fill="#0a0a0a"/>
+  <g transform="translate(400 330)">
+  <ellipse cx="0" cy="95" rx="300" ry="18" fill="#000" opacity=".5"/>
+  <path d="M-290 60 Q-295 10 -250 0 L-160 -10 Q-110 -80 -30 -85 L80 -85 Q150 -80 200 -15 L265 0 Q300 10 295 60 Z" fill="#e9e9e9"/>
+  <path d="M-140 -14 Q-100 -70 -40 -72 L-40 -14 Z M-20 -72 L75 -72 Q130 -68 170 -14 L-20 -14 Z" fill="#1f2a33"/>
+  <circle cx="-170" cy="65" r="45" fill="#0a0a0a"/><circle cx="-170" cy="65" r="26" fill="#d0d0d0"/>
+  <circle cx="170" cy="65" r="45" fill="#0a0a0a"/><circle cx="170" cy="65" r="26" fill="#d0d0d0"/>
+  <path d="M-230 5 Q-100 -5 120 -8 Q200 -5 250 8" stroke="#fff" stroke-width="5" fill="none"/>
+</g>
+  <text x="400" y="560" fill="#fff" fill-opacity=".35" font-family="Arial, sans-serif" font-size="16" letter-spacing="4" text-anchor="middle">PHOTO PROVISOIRE · APRÈS</text>
+</svg>
