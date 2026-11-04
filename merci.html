@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     IRON CLEAN — Page de confirmation
+     Affichée automatiquement par Netlify après l'envoi du
+     formulaire de pré-rendez-vous (action="/merci.html").
+     ============================================================ -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande envoyée — IRON CLEAN</title>
+  <!-- Cette page n'a pas d'intérêt dans les résultats de recherche -->
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main class="confirmation">
+    <div class="container confirmation__contenu">
+      <a href="index.html" aria-label="IRON CLEAN — retour à l’accueil">
+        <img src="logo.svg" alt="IRON CLEAN" class="confirmation__logo" width="160" height="40">
+      </a>
+
+      <!-- Coche verte -->
+      <svg class="confirmation__icone" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M7.5 12.5l3 3 6-6.5"/>
+      </svg>
+
+      <h1 class="titre-section">Merci&nbsp;!</h1>
+      <p class="confirmation__texte">
+        Votre demande a bien été envoyée, Iron Clean vous recontacte rapidement.
+      </p>
+
+      <div class="contact__boutons confirmation__boutons">
+        <a href="index.html" class="btn">Retour au site</a>
+        <a href="tel:+33649723311" class="btn btn--contour">Appeler le 06&nbsp;49&nbsp;72&nbsp;33&nbsp;11</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

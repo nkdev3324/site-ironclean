@@ -520,7 +520,13 @@ h1, h2, h3 {
   font-family: var(--police-titre);
   font-size: 2rem;
   color: var(--vert);
-  min-width: 110px;
+  min-width: 160px;      /* même largeur pour les 3 chiffres : légendes alignées */
+  white-space: nowrap;
+}
+
+/* Variante pour un mot (ex. "Toulouse") : plus long qu'un nombre, donc un peu plus petit */
+.chiffre--mot {
+  font-size: 1.35rem;
 }
 
 .legende {
@@ -588,6 +594,12 @@ h1, h2, h3 {
 /* ------------------------------------------------------------
    9. SERVICES ET TARIFS
    ------------------------------------------------------------ */
+/* Les 2 formules sont centrées et pas trop larges */
+.tarifs {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
 .tarif {
   position: relative;
   display: flex;
@@ -627,6 +639,7 @@ h1, h2, h3 {
 .tarif__nom {
   font-size: 1.2rem;
   margin-bottom: 18px;
+  min-height: 3em;      /* garde les prix alignés même si un nom tient sur 2 lignes */
 }
 
 .tarif__prix {
@@ -699,9 +712,16 @@ h1, h2, h3 {
   text-align: center;
 }
 
+/* Les photos étant en format portrait, on limite la largeur des comparateurs */
+.comparateurs {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
 .comparateur__cadre {
   position: relative;
-  aspect-ratio: 4 / 3;      /* proportions fixes du cadre */
+  aspect-ratio: 3 / 4;      /* proportions fixes du cadre (photos portrait) */
+  background: var(--gris-carte);
   overflow: hidden;
   border: 1px solid var(--bordure);
   /* Variable modifiée par le JavaScript selon la position du curseur */
@@ -892,6 +912,229 @@ a.contact__valeur:hover {
 
 
 /* ------------------------------------------------------------
+   11 bis. FORMULAIRE DE PRÉ-RENDEZ-VOUS
+   ------------------------------------------------------------ */
+.contact__liste {
+  margin-top: 48px;
+}
+
+.formulaire {
+  background: var(--gris-carte);
+  border: 1px solid var(--bordure);
+  border-top: 2px solid var(--vert);
+  padding: 40px 36px;
+}
+
+.formulaire__titre {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.formulaire__intro {
+  color: var(--texte-doux);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.champ label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.requis {
+  color: var(--vert);
+}
+
+.facultatif {
+  color: var(--texte-doux);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--noir);
+  color: var(--blanc);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  font-family: var(--police-texte);
+  font-weight: 500;
+  font-size: 1rem;          /* 16 px minimum : évite le zoom automatique sur iPhone */
+  line-height: 1.4;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.champ textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.champ input::placeholder,
+.champ textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Liste déroulante : on remplace la flèche du navigateur par une flèche verte */
+.champ select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--vert) 50%),
+                    linear-gradient(135deg, var(--vert) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.champ select option {
+  background: var(--gris-carte);
+  color: var(--blanc);
+}
+
+/* Icône du calendrier visible sur fond noir */
+.champ input[type="date"] {
+  color-scheme: dark;
+  min-height: 52px;
+}
+
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: var(--vert);
+  box-shadow: 0 0 0 3px rgba(46, 233, 0, 0.2);
+}
+
+/* Petit flash vert quand une formule est présélectionnée depuis les tarifs */
+.champ select.preselection {
+  border-color: var(--vert);
+  box-shadow: 0 0 0 3px rgba(46, 233, 0, 0.3);
+}
+
+.formulaire__mention {
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+  margin-bottom: 20px;
+}
+
+/* Honeypot anti-spam : totalement invisible pour les visiteurs */
+.formulaire__piege {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+
+/* ------------------------------------------------------------
+   11 ter. NOS RÉALISATIONS (vidéos TikTok)
+   ------------------------------------------------------------ */
+.videos {
+  align-items: start;
+}
+
+.video {
+  display: flex;
+  justify-content: center;
+  min-width: 0;             /* évite qu'une vidéo élargisse la colonne */
+}
+
+/* Bloc TikTok avant le chargement du lecteur : cadre aux couleurs du site */
+.video .tiktok-embed {
+  width: 100%;
+  margin: 0 !important;
+  min-height: 560px;
+  background: var(--gris-carte);
+  border: 1px solid var(--bordure) !important;
+  border-radius: 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video .tiktok-embed section a {
+  color: var(--vert);
+  font-weight: 700;
+}
+
+/* Une fois le lecteur chargé, TikTok remplace le bloc par une iframe */
+.video iframe {
+  max-width: 100%;
+}
+
+.realisations__suite {
+  text-align: center;
+  margin-top: 48px;
+}
+
+
+/* ------------------------------------------------------------
+   11 quater. PAGE DE CONFIRMATION (merci.html)
+   ------------------------------------------------------------ */
+.confirmation {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(46, 233, 0, 0.12), transparent 70%),
+    var(--noir);
+}
+
+.confirmation__contenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirmation__logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 56px;
+}
+
+.confirmation__icone {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  fill: none;
+  stroke: var(--vert);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.confirmation__texte {
+  max-width: 520px;
+  color: var(--texte-doux);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.confirmation__boutons {
+  justify-content: center;
+}
+
+
+/* ------------------------------------------------------------
    12. PIED DE PAGE
    ------------------------------------------------------------ */
 .footer {
@@ -969,6 +1212,35 @@ a.contact__valeur:hover {
    lorsque l'écran est plus petit que la largeur indiquée.
    ------------------------------------------------------------ */
 
+/* Petits ordinateurs (981 à 1240 px) : on resserre le menu pour qu'il tienne sur une ligne */
+@media (min-width: 981px) and (max-width: 1240px) {
+  .header__logo img {
+    width: 120px;
+  }
+
+  .nav {
+    gap: 20px;
+  }
+
+  .nav__list {
+    gap: 18px;
+  }
+
+  .nav__link {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav__cta {
+    padding: 10px 14px;
+  }
+}
+
+.nav__link,
+.nav__cta {
+  white-space: nowrap;
+}
+
 /* Tablettes et petits ordinateurs (moins de 980 px) */
 @media (max-width: 980px) {
   .section {
@@ -1023,7 +1295,7 @@ a.contact__valeur:hover {
   }
 
   /* Pour les tarifs, on laisse plus d'espace pour le badge */
-  #services .grille--3 {
+  .tarifs {
     gap: 40px;
   }
 
@@ -1079,12 +1351,32 @@ a.contact__valeur:hover {
   }
 
   .chiffre {
-    font-size: 1.6rem;
-    min-width: 80px;
+    font-size: 1.5rem;
+    min-width: 128px;
+  }
+
+  .chiffre--mot {
+    font-size: 1.05rem;
+  }
+
+  .apropos__chiffres li {
+    gap: 16px;
   }
 
   .carte,
   .tarif {
     padding: 36px 24px 28px;
+  }
+
+  .tarif__nom {
+    min-height: 0;
+  }
+
+  .formulaire {
+    padding: 32px 20px;
+  }
+
+  .confirmation__boutons .btn {
+    width: 100%;
   }
 }

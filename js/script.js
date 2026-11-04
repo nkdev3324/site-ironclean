@@ -6,7 +6,10 @@
    3. Lien du menu surligné selon la section affichée
    4. Apparition en douceur des blocs au défilement
    5. Comparateurs avant / après
-   6. Année automatique dans le pied de page
+   6. Boutons "Réserver" : présélection de la formule dans le formulaire
+   7. Vidéos TikTok : chargement différé du script officiel
+   8. Formulaire : date minimale = aujourd'hui
+   9. Année automatique dans le pied de page
    ============================================================ */
 
 // Remarque : la classe "js" est ajoutée sur <html> directement dans index.html
@@ -133,7 +136,74 @@ document.querySelectorAll(".comparateur__cadre").forEach(function (cadre) {
 
 
 /* ------------------------------------------------------------
-   6. ANNÉE AUTOMATIQUE
+   6. BOUTONS "RÉSERVER" → FORMULAIRE
+   Chaque bouton porte un attribut data-formule. Au clic, la page
+   descend au formulaire (lien #rendez-vous) et on choisit la
+   formule correspondante dans la liste déroulante.
+   ------------------------------------------------------------ */
+const choixFormule = document.getElementById("formule");
+
+document.querySelectorAll("[data-formule]").forEach(function (bouton) {
+  bouton.addEventListener("click", function () {
+    if (!choixFormule) return;
+    choixFormule.value = bouton.dataset.formule;
+    // Petit effet visuel pour montrer que la formule a été choisie
+    choixFormule.classList.add("preselection");
+    setTimeout(function () {
+      choixFormule.classList.remove("preselection");
+    }, 1800);
+  });
+});
+
+
+/* ------------------------------------------------------------
+   7. VIDÉOS TIKTOK (chargement différé)
+   Le script officiel de TikTok (embed.js) est assez lourd.
+   On ne le charge qu'une seule fois, et seulement quand le
+   visiteur approche de la section "Nos réalisations".
+   ------------------------------------------------------------ */
+const sectionVideos = document.getElementById("realisations");
+let tiktokCharge = false;
+
+function chargerTikTok() {
+  if (tiktokCharge) return;   // déjà chargé : on ne recommence pas
+  tiktokCharge = true;
+  const script = document.createElement("script");
+  script.src = "https://www.tiktok.com/embed.js";
+  script.async = true;
+  document.body.appendChild(script);
+}
+
+if (sectionVideos) {
+  const observateurVideos = new IntersectionObserver(function (entrees, observateur) {
+    if (entrees.some(function (entree) { return entree.isIntersecting; })) {
+      chargerTikTok();
+      observateur.disconnect();
+    }
+  }, {
+    rootMargin: "600px 0px" // on commence un peu avant que la section soit visible
+  });
+  observateurVideos.observe(sectionVideos);
+}
+
+
+/* ------------------------------------------------------------
+   8. FORMULAIRE : DATE MINIMALE
+   On empêche de choisir une date déjà passée.
+   ------------------------------------------------------------ */
+const champDate = document.getElementById("date");
+
+if (champDate) {
+  const aujourdhui = new Date();
+  // Format attendu par le champ date : AAAA-MM-JJ (heure locale)
+  const mois = String(aujourdhui.getMonth() + 1).padStart(2, "0");
+  const jour = String(aujourdhui.getDate()).padStart(2, "0");
+  champDate.min = aujourdhui.getFullYear() + "-" + mois + "-" + jour;
+}
+
+
+/* ------------------------------------------------------------
+   9. ANNÉE AUTOMATIQUE
    Le pied de page affiche toujours l'année en cours.
    ------------------------------------------------------------ */
 document.getElementById("annee").textContent = new Date().getFullYear();
