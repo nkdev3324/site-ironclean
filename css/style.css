@@ -1044,11 +1044,71 @@ a.contact__valeur:hover {
 /* ------------------------------------------------------------
    11 ter. NOS RÉALISATIONS (vidéos TikTok)
    ------------------------------------------------------------ */
-.videos {
-  align-items: start;
+/* Carrousel : [flèche ‹] [piste de vidéos] [flèche ›] */
+.carrousel {
+  --carrousel-ecart: 30px;      /* espace entre deux vidéos */
+  --carrousel-visibles: 3;      /* nombre de vidéos visibles en même temps */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+
+/* La piste : une seule rangée qui défile horizontalement */
+.carrousel__piste {
+  display: flex;
+  gap: var(--carrousel-ecart);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;   /* chaque vidéo se cale proprement */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;           /* cache la barre de défilement (Firefox) */
+  -ms-overflow-style: none;
+  border-radius: 8px;
+}
+
+.carrousel__piste::-webkit-scrollbar {
+  display: none;                   /* cache la barre de défilement (Chrome, Safari) */
+}
+
+.carrousel__piste:focus-visible {
+  outline: 2px solid var(--vert);
+  outline-offset: 4px;
+}
+
+/* Flèches rondes aux couleurs de la charte */
+.carrousel__fleche {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 4px;
+  border: 2px solid var(--vert);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--vert);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), opacity var(--transition);
+}
+
+.carrousel__fleche:hover:not(:disabled),
+.carrousel__fleche:focus-visible {
+  background: var(--vert);
+  color: var(--noir);
+}
+
+.carrousel__fleche:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 .video {
+  flex: 0 0 calc((100% - (var(--carrousel-visibles) - 1) * var(--carrousel-ecart)) / var(--carrousel-visibles));
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1201,7 +1261,8 @@ a.contact__valeur:hover {
 
 /* Respect des personnes qui ont désactivé les animations dans leur système */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html,
+  .carrousel__piste {
     scroll-behavior: auto;
   }
   *,
@@ -1305,6 +1366,12 @@ a.contact__valeur:hover {
     margin: 0 auto;
   }
 
+  /* Carrousel vidéos : 2 vidéos visibles sur tablette */
+  .carrousel {
+    --carrousel-visibles: 2;
+    --carrousel-ecart: 20px;
+  }
+
   /* Pour les tarifs, on laisse plus d'espace pour le badge */
   .tarifs {
     gap: 40px;
@@ -1337,6 +1404,29 @@ a.contact__valeur:hover {
 
   .entete-section {
     margin-bottom: 44px;
+  }
+
+  /* Carrousel vidéos sur téléphone : 1 vidéo + un bout de la suivante,
+     défilement au doigt, flèches masquées */
+  .carrousel {
+    display: block;
+    --carrousel-ecart: 14px;
+  }
+
+  .carrousel__fleche {
+    display: none;
+  }
+
+  /* La piste déborde jusqu'au bord de l'écran pour bien voir la vidéo suivante */
+  .carrousel__piste {
+    margin: 0 -20px;
+    padding: 0 20px;
+    scroll-padding: 0 20px;
+    border-radius: 0;
+  }
+
+  .video {
+    flex-basis: 80%;
   }
 
   .grille--2 {
