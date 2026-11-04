@@ -9,6 +9,7 @@
    6. Boutons "Réserver" : présélection de la formule dans le formulaire
    7. Formulaire : date minimale = aujourd'hui
    8. Année automatique dans le pied de page
+   9. Carrousel des vidéos TikTok
    ============================================================ */
 
 // Remarque : la classe "js" est ajoutée sur <html> directement dans index.html
@@ -175,3 +176,57 @@ if (champDate) {
    Le pied de page affiche toujours l'année en cours.
    ------------------------------------------------------------ */
 document.getElementById("annee").textContent = new Date().getFullYear();
+
+
+/* ------------------------------------------------------------
+   9. CARROUSEL DES VIDÉOS TIKTOK
+   Les flèches font défiler la piste d'une "page" (le nombre de
+   vidéos visibles). Le calage et le glissement au doigt sont
+   gérés par le CSS (scroll-snap). Les flèches se grisent au
+   début et à la fin.
+   ------------------------------------------------------------ */
+document.querySelectorAll(".carrousel").forEach(function (carrousel) {
+  const piste = carrousel.querySelector(".carrousel__piste");
+  const precedent = carrousel.querySelector(".carrousel__fleche--prec");
+  const suivant = carrousel.querySelector(".carrousel__fleche--suiv");
+  if (!piste || !precedent || !suivant) return;
+
+  // Largeur d'un défilement : une vidéo + l'écart, multipliée par le nombre de vidéos visibles
+  function largeurPage() {
+    const video = piste.querySelector(".video");
+    if (!video) return piste.clientWidth;
+    const ecart = parseFloat(getComputedStyle(piste).columnGap) || 0;
+    const pas = video.getBoundingClientRect().width + ecart;
+    const visibles = Math.max(1, Math.round((piste.clientWidth + ecart) / pas));
+    return pas * visibles;
+  }
+
+  function majFleches() {
+    const max = piste.scrollWidth - piste.clientWidth;
+    precedent.disabled = piste.scrollLeft <= 2;
+    suivant.disabled = piste.scrollLeft >= max - 2;
+  }
+
+  precedent.addEventListener("click", function () {
+    piste.scrollBy({ left: -largeurPage(), behavior: "smooth" });
+  });
+
+  suivant.addEventListener("click", function () {
+    piste.scrollBy({ left: largeurPage(), behavior: "smooth" });
+  });
+
+  // Flèches du clavier quand la piste a le focus
+  piste.addEventListener("keydown", function (evenement) {
+    if (evenement.key === "ArrowRight") {
+      evenement.preventDefault();
+      suivant.click();
+    } else if (evenement.key === "ArrowLeft") {
+      evenement.preventDefault();
+      precedent.click();
+    }
+  });
+
+  piste.addEventListener("scroll", majFleches, { passive: true });
+  window.addEventListener("resize", majFleches);
+  majFleches();
+});
