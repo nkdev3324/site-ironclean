@@ -279,11 +279,10 @@
 
     <!-- ========================================================
          NOS RÉALISATIONS (vidéos TikTok)
-         Code d'intégration officiel de TikTok (<blockquote class="tiktok-embed">).
-         Le script TikTok (embed.js) n'est chargé qu'UNE seule fois, et seulement
-         quand on approche de cette section (voir js/script.js, partie 7) :
-         la page reste rapide à l'ouverture.
-         ➜ Pour changer une vidéo : remplacez l'identifiant dans "cite" et "data-video-id".
+         Lecteur officiel TikTok en iframe (https://www.tiktok.com/player/v1/ID).
+         Aucun script TikTok n'est chargé : chaque iframe se charge seulement
+         quand on approche de la vidéo (loading="lazy").
+         ➜ Pour changer une vidéo : remplacez l'identifiant dans "src" et dans le lien "Voir sur TikTok".
          ======================================================== -->
     <section class="section" id="realisations">
       <div class="container">
@@ -295,34 +294,40 @@
 
         <div class="grille grille--3 videos">
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7695929950121037088" data-video-id="7695929950121037088" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7695929950121037088" title="Vidéo TikTok Iron Clean 1" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7695929950121037088" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7698483129694162209" data-video-id="7698483129694162209" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7698483129694162209" title="Vidéo TikTok Iron Clean 2" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7698483129694162209" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7700608299057581345" data-video-id="7700608299057581345" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7700608299057581345" title="Vidéo TikTok Iron Clean 3" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7700608299057581345" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7701501129284275489" data-video-id="7701501129284275489" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7701501129284275489" title="Vidéo TikTok Iron Clean 4" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7701501129284275489" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7694970964706118944" data-video-id="7694970964706118944" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7694970964706118944" title="Vidéo TikTok Iron Clean 5" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7694970964706118944" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
           <div class="video reveal">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@iron.clean7/video/7693244122148244769" data-video-id="7693244122148244769" style="max-width: 605px; min-width: 280px;">
-              <section><a target="_blank" rel="noopener" title="@iron.clean7" href="https://www.tiktok.com/@iron.clean7?refer=embed">@iron.clean7</a></section>
-            </blockquote>
+            <div class="video__cadre">
+              <iframe src="https://www.tiktok.com/player/v1/7693244122148244769" title="Vidéo TikTok Iron Clean 6" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7693244122148244769" target="_blank" rel="noopener">Voir sur TikTok</a>
           </div>
         </div>
 

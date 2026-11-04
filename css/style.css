@@ -1050,32 +1050,43 @@ a.contact__valeur:hover {
 
 .video {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   min-width: 0;             /* évite qu'une vidéo élargisse la colonne */
 }
 
-/* Bloc TikTok avant le chargement du lecteur : cadre aux couleurs du site */
-.video .tiktok-embed {
+/* Cadre vertical 9:16 aux coins arrondis qui contient le lecteur TikTok */
+.video__cadre {
+  position: relative;
   width: 100%;
-  margin: 0 !important;
-  min-height: 560px;
+  max-width: 360px;         /* évite une vidéo démesurée sur mobile */
+  aspect-ratio: 9 / 16;
   background: var(--gris-carte);
-  border: 1px solid var(--bordure) !important;
-  border-radius: 8px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
   overflow: hidden;
 }
 
-.video .tiktok-embed section a {
-  color: var(--vert);
-  font-weight: 700;
+.video__cadre iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
-/* Une fois le lecteur chargé, TikTok remplace le bloc par une iframe */
-.video iframe {
-  max-width: 100%;
+/* Petit lien "Voir sur TikTok" sous chaque vidéo */
+.video__lien {
+  color: var(--vert);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.video__lien:hover,
+.video__lien:focus-visible {
+  text-decoration: underline;
 }
 
 .realisations__suite {
