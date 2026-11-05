@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     IRON CLEAN — Page Mentions légales
+     Même charte que le reste du site (css/style.css, partie 11 quinquies).
+     ============================================================ -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions légales — IRON CLEAN</title>
+  <meta name="description" content="Mentions légales du site IRON CLEAN : éditeur, hébergeur et propriété intellectuelle.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- En-tête simplifié : logo + retour à l'accueil -->
+  <header class="header header--page">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo" aria-label="IRON CLEAN — retour à l’accueil">
+        <img src="logo.svg" alt="IRON CLEAN" width="160" height="40">
+      </a>
+      <a href="index.html" class="lien-retour">← Retour à l’accueil</a>
+    </div>
+  </header>
+
+  <main class="section legal">
+    <div class="container legal__contenu">
+      <p class="surtitre">Informations légales</p>
+      <h1 class="titre-section">Mentions légales</h1>
+      <p class="legal__maj">Dernière mise à jour&nbsp;: novembre 2026</p>
+
+      <section class="legal__bloc">
+        <h2>Éditeur du site</h2>
+        <p>
+          Le site est édité par <strong>IRON CLEAN</strong>, nom commercial de <strong>Marco Chouchane</strong>,
+          entrepreneur individuel (EI).
+        </p>
+        <ul class="legal__infos">
+          <li><span>SIRET</span> 880&nbsp;682&nbsp;398&nbsp;00024</li>
+          <li><span>Adresse</span> 123 route de Fronton, 31140 Aucamville, France</li>
+          <li><span>Téléphone</span> <a href="tel:+33649723311">06&nbsp;49&nbsp;72&nbsp;33&nbsp;11</a></li>
+        </ul>
+      </section>
+
+      <section class="legal__bloc">
+        <h2>Responsable de la publication</h2>
+        <p>Marco Chouchane.</p>
+      </section>
+
+      <section class="legal__bloc">
+        <h2>Hébergeur</h2>
+        <ul class="legal__infos">
+          <li><span>Société</span> Netlify, Inc.</li>
+          <li><span>Adresse</span> 101 2nd Street, Suite 575, San Francisco, CA 94105, États-Unis</li>
+          <li><span>Contact</span> <a href="mailto:support@netlify.com">support@netlify.com</a></li>
+        </ul>
+      </section>
+
+      <section class="legal__bloc">
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L’ensemble des contenus de ce site (textes, logo, photos et vidéos) est la propriété d’IRON CLEAN.
+          Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation
+          écrite préalable est interdite.
+        </p>
+      </section>
+
+      <section class="legal__bloc">
+        <h2>Données personnelles</h2>
+        <p>
+          Pour savoir comment sont utilisées les informations envoyées via le formulaire de pré-rendez-vous,
+          consultez notre <a href="confidentialite.html">politique de confidentialité</a>.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========================================================
+       PIED DE PAGE
+       ======================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="logo.svg" alt="IRON CLEAN" class="footer__logo" width="140" height="35">
+      <p class="footer__valeurs">Premium · Précision · Confiance</p>
+      <nav class="footer__liens" aria-label="Informations légales">
+        <a href="mentions-legales.html" aria-current="page">Mentions légales</a>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+      </nav>
+      <p class="footer__copyright">© <span id="annee">2026</span> IRON CLEAN — Toulouse. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Année automatique dans le pied de page -->
+  <script>document.getElementById("annee").textContent = new Date().getFullYear();</script>
+</body>
+</html>

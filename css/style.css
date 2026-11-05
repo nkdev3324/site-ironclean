@@ -1031,6 +1031,37 @@ a.contact__valeur:hover {
   margin-bottom: 20px;
 }
 
+/* Case à cocher de consentement (RGPD) */
+.consentement {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 4px 0 16px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--texte-doux);
+}
+
+.consentement input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--vert);
+  cursor: pointer;
+}
+
+.consentement label {
+  cursor: pointer;
+}
+
+.consentement a {
+  color: var(--vert);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Honeypot anti-spam : totalement invisible pour les visiteurs */
 .formulaire__piege {
   position: absolute;
@@ -1204,6 +1235,147 @@ a.contact__valeur:hover {
   justify-content: center;
 }
 
+/* Sur la page de confirmation, le pied de page reste en bas de l'écran */
+.page-confirmation {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.page-confirmation .confirmation {
+  flex: 1;
+  min-height: 0;
+}
+
+
+/* ------------------------------------------------------------
+   11 quinquies. PAGES LÉGALES (mentions-legales.html, confidentialite.html)
+   ------------------------------------------------------------ */
+/* En-tête des pages secondaires : fond noir, toujours visible */
+.header--page {
+  position: sticky;
+  background-color: rgba(0, 0, 0, 0.92);
+  border-bottom-color: var(--bordure);
+}
+
+.lien-retour {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.lien-retour:hover {
+  color: var(--vert);
+}
+
+.legal {
+  padding-top: 80px;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(46, 233, 0, 0.08), transparent 70%),
+    var(--noir);
+}
+
+.legal__contenu {
+  max-width: 820px;
+}
+
+.legal__maj {
+  color: var(--texte-doux);
+  font-size: 0.85rem;
+  margin: -12px 0 32px;
+}
+
+.legal__intro {
+  color: var(--texte-doux);
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.legal__bloc {
+  padding: 32px 0;
+  border-top: 1px solid var(--bordure);
+}
+
+.legal__bloc:last-child {
+  padding-bottom: 0;
+}
+
+.legal__bloc h2 {
+  font-size: 1rem;
+  color: var(--vert);
+  margin-bottom: 16px;
+}
+
+.legal__bloc p + p,
+.legal__bloc ul + p,
+.legal__bloc p + ul {
+  margin-top: 12px;
+}
+
+.legal__bloc p,
+.legal__liste {
+  color: var(--texte-doux);
+}
+
+.legal__bloc strong {
+  color: var(--blanc);
+}
+
+.legal__bloc a {
+  color: var(--vert);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+/* Liste à puces vertes */
+.legal__liste li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+}
+
+.legal__liste li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 2px;
+  background: var(--vert);
+}
+
+/* Fiche d'informations : intitulé à gauche, valeur à droite */
+.legal__infos {
+  background: var(--gris-carte);
+  border: 1px solid var(--bordure);
+  border-left: 2px solid var(--vert);
+}
+
+.legal__infos li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px;
+  padding: 14px 20px;
+}
+
+.legal__infos li + li {
+  border-top: 1px solid var(--bordure);
+}
+
+.legal__infos span {
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  padding-top: 3px;
+}
+
 
 /* ------------------------------------------------------------
    12. PIED DE PAGE
@@ -1232,6 +1404,33 @@ a.contact__valeur:hover {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--vert);
+}
+
+/* Liens vers les pages légales */
+.footer__liens {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer__liens a {
+  color: var(--blanc);
+  transition: color var(--transition);
+}
+
+.footer__liens a:hover,
+.footer__liens a[aria-current="page"] {
+  color: var(--vert);
+}
+
+/* Pied de page réduit (page de confirmation) */
+.footer--compact {
+  padding: 28px 0;
 }
 
 .footer__copyright {
@@ -1479,5 +1678,25 @@ a.contact__valeur:hover {
 
   .confirmation__boutons .btn {
     width: 100%;
+  }
+
+  .lien-retour {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .legal {
+    padding-top: 48px;
+  }
+
+  .legal__infos li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    padding: 12px 16px;
+  }
+
+  .footer__liens {
+    flex-direction: column;
+    gap: 10px;
   }
 }

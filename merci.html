@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="page-confirmation">
   <main class="confirmation">
     <div class="container confirmation__contenu">
       <a href="index.html" aria-label="IRON CLEAN — retour à l’accueil">
@@ -44,5 +44,18 @@
       </div>
     </div>
   </main>
+
+  <!-- Pied de page -->
+  <footer class="footer footer--compact">
+    <div class="container footer__inner">
+      <nav class="footer__liens" aria-label="Informations légales">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+      </nav>
+      <p class="footer__copyright">© <span id="annee">2026</span> IRON CLEAN — Toulouse. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById("annee").textContent = new Date().getFullYear();</script>
 </body>
 </html>

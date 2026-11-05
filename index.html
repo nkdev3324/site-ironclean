@@ -450,6 +450,16 @@
               <textarea id="note" name="note" rows="4" placeholder="État du véhicule, disponibilités, questions…"></textarea>
             </div>
 
+            <!-- Consentement RGPD (obligatoire) : la valeur "oui" est enregistrée avec la demande dans Netlify -->
+            <div class="consentement">
+              <input type="checkbox" id="consentement" name="consentement" value="oui" required>
+              <label for="consentement">
+                J’accepte que mes données soient utilisées par IRON CLEAN pour être recontacté(e) au sujet de ma demande.
+                <a href="confidentialite.html" target="_blank" rel="noopener">En savoir plus</a>
+                <span class="requis" aria-hidden="true">*</span>
+              </label>
+            </div>
+
             <p class="formulaire__mention"><span class="requis">*</span> Champs obligatoires</p>
 
             <button type="submit" class="btn btn--plein-largeur">Envoyer ma demande</button>
@@ -467,6 +477,10 @@
     <div class="container footer__inner">
       <img src="logo.svg" alt="IRON CLEAN" class="footer__logo" width="140" height="35">
       <p class="footer__valeurs">Premium · Précision · Confiance</p>
+      <nav class="footer__liens" aria-label="Informations légales">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+      </nav>
       <!-- L'année est remplie automatiquement par le JavaScript (id="annee") -->
       <p class="footer__copyright">© <span id="annee">2026</span> IRON CLEAN — Toulouse. Tous droits réservés.</p>
     </div>
