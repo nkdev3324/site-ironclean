@@ -10,6 +10,7 @@
    7. Formulaire : date minimale = aujourd'hui
    8. Année automatique dans le pied de page
    9. Carrousel des vidéos TikTok
+   10. Vidéos TikTok chargées uniquement au clic (cookies)
    ============================================================ */
 
 // Remarque : la classe "js" est ajoutée sur <html> directement dans index.html
@@ -230,3 +231,60 @@ document.querySelectorAll(".carrousel").forEach(function (carrousel) {
   window.addEventListener("resize", majFleches);
   majFleches();
 });
+
+
+/* ------------------------------------------------------------
+   10. VIDÉOS TIKTOK CHARGÉES UNIQUEMENT AU CLIC (COOKIES)
+   Aucune vidéo n'est chargée à l'ouverture de la page : TikTok
+   dépose des cookies dès que son lecteur s'affiche. Chaque cadre
+   contient donc un bloc d'attente ; l'iframe n'est créée qu'au
+   clic sur "Charger la vidéo" (ou "Charger toutes les vidéos"),
+   ce qui vaut consentement aux cookies de TikTok.
+   ------------------------------------------------------------ */
+(function () {
+  const cadres = document.querySelectorAll(".video__cadre[data-tiktok-id]");
+  const boutonTout = document.getElementById("charger-toutes-videos");
+  if (!cadres.length) return;
+
+  function chargerVideo(cadre) {
+    if (cadre.querySelector("iframe")) return;
+    const id = cadre.getAttribute("data-tiktok-id");
+    if (!/^\d+$/.test(id)) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.tiktok.com/player/v1/" + id;
+    iframe.title = cadre.getAttribute("data-titre") || "Vidéo TikTok";
+    iframe.allow = "fullscreen; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+    const attente = cadre.querySelector(".video__attente");
+    if (attente) attente.remove();
+    cadre.appendChild(iframe);
+  }
+
+  function toutesChargees() {
+    return Array.prototype.every.call(cadres, function (cadre) {
+      return cadre.querySelector("iframe");
+    });
+  }
+
+  function majBoutonTout() {
+    if (boutonTout && toutesChargees()) {
+      boutonTout.closest(".realisations__consentement").hidden = true;
+    }
+  }
+
+  cadres.forEach(function (cadre) {
+    const bouton = cadre.querySelector(".video__charger");
+    if (!bouton) return;
+    bouton.addEventListener("click", function () {
+      chargerVideo(cadre);
+      majBoutonTout();
+    });
+  });
+
+  if (boutonTout) {
+    boutonTout.addEventListener("click", function () {
+      cadres.forEach(chargerVideo);
+      majBoutonTout();
+    });
+  }
+})();

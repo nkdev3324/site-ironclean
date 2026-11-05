@@ -1167,6 +1167,76 @@ a.contact__valeur:hover {
   border: 0;
 }
 
+/* Bloc d'attente affiché à la place du lecteur TikTok tant que
+   le visiteur n'a pas cliqué (aucun cookie TikTok avant le clic) */
+.video__attente {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  background: var(--noir);
+  text-align: center;
+}
+
+.video__logo {
+  width: 56px;
+  height: 56px;
+  fill: var(--blanc);
+  filter: drop-shadow(-2px -2px 0 #25F4EE) drop-shadow(2px 2px 0 #FE2C55);
+}
+
+.video__charger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 2px solid var(--vert);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--vert);
+  font-family: var(--police-texte);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.video__charger:hover,
+.video__charger:focus-visible {
+  background: var(--vert);
+  color: var(--noir);
+}
+
+.video__mention {
+  max-width: 240px;
+  color: var(--texte-doux);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+/* Bouton "Charger toutes les vidéos" au-dessus du carrousel */
+.realisations__consentement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.realisations__consentement .video__mention {
+  max-width: none;
+}
+
+.realisations__consentement[hidden] {
+  display: none;
+}
+
 /* Petit lien "Voir sur TikTok" sous chaque vidéo */
 .video__lien {
   color: var(--vert);
