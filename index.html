@@ -280,9 +280,11 @@
     <!-- ========================================================
          NOS RÉALISATIONS (vidéos TikTok)
          Lecteur officiel TikTok en iframe (https://www.tiktok.com/player/v1/ID).
-         Aucun script TikTok n'est chargé : chaque iframe se charge seulement
-         quand on approche de la vidéo (loading="lazy").
-         ➜ Pour changer une vidéo : remplacez l'identifiant dans "src" et dans le lien "Voir sur TikTok".
+         Par respect des cookies, AUCUNE vidéo ne se charge automatiquement :
+         l'iframe TikTok n'est créée qu'au clic sur "Charger la vidéo" (ou sur
+         "Charger toutes les vidéos"), ce qui vaut consentement aux cookies de TikTok.
+         Voir js/script.js, partie 10.
+         ➜ Pour changer une vidéo : remplacez l'identifiant dans "data-tiktok-id" et dans le lien "Voir sur TikTok".
          ======================================================== -->
     <section class="section" id="realisations">
       <div class="container">
@@ -294,43 +296,72 @@
 
         <!-- Carrousel : une rangée de vidéos qui défile horizontalement.
              Flèches ‹ › sur ordinateur, glissement au doigt sur mobile (voir js/script.js, partie 9). -->
+        <div class="realisations__consentement reveal">
+          <button class="btn btn--contour btn--small" type="button" id="charger-toutes-videos">&#9654; Charger toutes les vidéos</button>
+          <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+        </div>
+
         <div class="carrousel reveal">
           <button class="carrousel__fleche carrousel__fleche--prec" type="button" aria-label="Vidéos précédentes" disabled>&#8249;</button>
 
           <div class="carrousel__piste videos" role="region" aria-label="Vidéos de nos réalisations" tabindex="0">
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7695929950121037088" title="Vidéo TikTok Iron Clean 1" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7695929950121037088" data-titre="Vidéo TikTok Iron Clean 1">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7695929950121037088" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7698483129694162209" title="Vidéo TikTok Iron Clean 2" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7698483129694162209" data-titre="Vidéo TikTok Iron Clean 2">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7698483129694162209" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7700608299057581345" title="Vidéo TikTok Iron Clean 3" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7700608299057581345" data-titre="Vidéo TikTok Iron Clean 3">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7700608299057581345" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7701501129284275489" title="Vidéo TikTok Iron Clean 4" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7701501129284275489" data-titre="Vidéo TikTok Iron Clean 4">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7701501129284275489" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7694970964706118944" title="Vidéo TikTok Iron Clean 5" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7694970964706118944" data-titre="Vidéo TikTok Iron Clean 5">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7694970964706118944" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
             <div class="video">
-              <div class="video__cadre">
-                <iframe src="https://www.tiktok.com/player/v1/7693244122148244769" title="Vidéo TikTok Iron Clean 6" loading="lazy" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="video__cadre" data-tiktok-id="7693244122148244769" data-titre="Vidéo TikTok Iron Clean 6">
+                <div class="video__attente">
+                  <svg class="video__logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.3 2.4 1.9 4 4.3 4.2v3.2c-1.6 0-3-.5-4.3-1.3v6.5c0 3.6-2.8 6.4-6.3 6.4S3.9 18.2 3.9 14.6s2.8-6.4 6.3-6.4c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2 3.1-1.4 3.1-3.2V2h3.2z"/></svg>
+                  <button class="video__charger" type="button">&#9654; Charger la vidéo</button>
+                  <p class="video__mention">En cliquant, vous acceptez que TikTok dépose des cookies.</p>
+                </div>
               </div>
               <a class="video__lien" href="https://www.tiktok.com/@iron.clean7/video/7693244122148244769" target="_blank" rel="noopener">Voir sur TikTok</a>
             </div>
