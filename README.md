@@ -14,12 +14,15 @@ Double-cliquez sur `index.html` : il s'ouvre dans votre navigateur.
 | `js/script.js` | Interactions : menu mobile, comparateur avant/après, animations |
 | `logo.svg` | Logo officiel |
 | `merci.html` | Page de confirmation affichée après l’envoi du formulaire |
+| `mentions-legales.html` | Mentions légales (éditeur, hébergeur, propriété intellectuelle) |
+| `confidentialite.html` | Politique de confidentialité (RGPD) |
 | `images/` | Photos avant/après (`avant-1.jpg`, `apres-1.jpg`…) + icône de l’onglet |
 
 ## Formulaire de pré-rendez-vous (Netlify Forms)
 Le formulaire `pre-rendez-vous` (section Contact) est détecté automatiquement par Netlify au déploiement.
 Les demandes reçues apparaissent dans l’interface Netlify, onglet **Forms**
 (vous pouvez y activer une notification par e-mail). Après l’envoi, le visiteur arrive sur `merci.html`.
+Une case de consentement (RGPD) est obligatoire avant l’envoi ; elle renvoie vers `confidentialite.html`.
 Le formulaire ne fonctionne qu’une fois le site en ligne sur Netlify (pas en ouvrant le fichier en local).
 
 ## À personnaliser
